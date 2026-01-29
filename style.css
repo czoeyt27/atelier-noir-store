@@ -1,0 +1,160 @@
+*/ CSS Reset */
+*{
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif; 
+    background-color: #f7f6f3; /* warm off-white */
+    color: #111; 
+    line-height: 1.6; 
+    display: flex;
+    flex-direction: column; 
+    min-height: 100vh; 
+    margin: 0; 
+}
+
+section {
+    padding: 1rem 6rem; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1.5rem; 
+}
+
+main {
+    flex-grow: 1; 
+}
+
+header {
+    padding: 4rem 6rem 2rem 6rem; /* Top, Right, Bottom, Left */
+    text-align: center; /* This moves the Title and Paragraph to the middle */
+    position: relative; /* This acts as the anchor for the status box */
+}
+
+.site-title {
+    font-size: 2.5rem; 
+    font-weight: 500; 
+    letter-spacing: 0.05em; 
+    margin-bottom: 0.2rem; 
+    
+}
+
+nav a {
+    text-decoration: none; 
+    color: #111; 
+    font-size: 1.0rem;  
+    letter-spacing: 0.08em; 
+    text-transform: uppercase; 
+}
+
+.brand {
+    display: inline-block;
+    padding-bottom: 1.0rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase; 
+}
+
+nav ul {
+    display: flex;
+    justify-content: left;
+    list-style: none;
+    gap: 3rem; /* Space between links */
+    padding: 1.5rem; 
+    margin: 0;    
+}
+
+h2 {
+    font-size: 1.8rem; 
+    font-weight: 400; 
+}
+
+h3 {
+    font-size: 1.2rem;  
+    letter-spacing: 0.05em; 
+}
+
+h4 {
+    font-size: 1rem; 
+}
+
+h2, h3, h4 {
+    margin: 0; 
+}
+
+.selection-status {
+    position: absolute; 
+    top: 2rem; 
+    right: 4rem; 
+    text-align: right; 
+    font-size: 0.8rem; 
+    text-transform: uppercase; 
+    letter-spacing: 0.1em; 
+}
+
+/* Style the list of names so it doesn't look messy */
+.empty-container {
+    list-style: none; 
+    margin-top: 0.5rem; 
+    color: #888; 
+}
+
+/* This targets the links inside your categories section specifically */
+.category-links a {
+    color: inherit; 
+    text-decoration: none; 
+    border-bottom: 1px solid transparent; 
+    transition: border-color 0.3s ease; 
+}
+
+.category-links a:hover {
+    border-bottom: 1px solid #111; /* Subtle luxury underline on hover */
+}
+
+
+.product-list {
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 3rem; 
+}
+
+.product-card {
+    display: flex; 
+    flex-direction: column; 
+    height: 100%; /* Ensures cards in the same row are equal height */
+    cursor: pointer; 
+      /* Smooth transition for the 'lift' effect */
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid transparent; /* Prevents layout jump */
+}
+
+/* Fixed the space betweem colon and last-child */
+.product-card p:last-child {
+    font-weight: 600; 
+    color: #111; 
+    margin-top: 0.5rem; 
+}
+
+.product-card img {
+    width: 100%; 
+    display: block; 
+    aspect-ratio: 3 /4; 
+    background-color: #eee;
+    object-fit: cover; 
+    margin-bottom: 1rem; 
+}
+
+.product-card:hover {
+    transform: translateY(-4px); /* A subtle luxury life effect */
+}
+
+.product-card.is-selected {
+    transform: scale(1.02); /* Very subtle increase */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05)  /* Soft, airy shadow */
+}
+
+@media (max-width: 768px) {
+    
+}
