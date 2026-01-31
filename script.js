@@ -75,31 +75,3 @@ productCards.forEach((card) => {
     });
   });
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-
-  // Luxury vintage collection
-const products = [
-  {
-    id: 1,
-    name: "Vintage Leather Trench",
-    price: 4200,
-    era: "1980s",
-    condition: "Excellent",
-    description: "Supple leather trench coat with a timeless silhouette."
-  },
-  {
-    id: 2,
-    name: "Silk Scarf – Paris",
-    price: 1800,
-    era: "1970s",
-    condition: "Very Good",
-    description: "Hand-rolled silk scarf sourced from a Parisian estate."
-  },
-  {
-    id: 3,
-    name: "Gold-Tone Wristwatch",
-    price: 6500,
-    era: "1960s",
-    condition: "Good",
-    description: "Minimalist gold-tone watch with mechanical movement."
-  }
-];
