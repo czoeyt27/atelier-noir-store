@@ -1,3 +1,10 @@
+
+const products = [
+  {id:1, name: "Vintage Leather Trench", category: "Unisex", price: 14900, imageUrl: "images/vintage-trench.jpg", summary: "1980s · Fine condition with a rich even pantina.", description: "A rare 1980s vintage leather trench in fine condition, featuring a rich even patina. Designed with a structured silhouette and timeless tailoring for elevated everyday wear."},
+  {id:2, name: "Crocodile Leather Coat", category: "Unisex", price: 18500, imageUrl: "images/crocodile-coat.jpg", summary: ""}
+]
+
+
 // ===============================
 // SETUP / MEMORY
 // ===============================
@@ -7,6 +14,9 @@ const emptyContainer = document.querySelector('.empty-container');
 // This displays how many items are selected
 const countDisplay = document.querySelector('#selection-count');
 
+const cartList = document.querySelector("#cart-list"); 
+
+const cartTotal = document.querySelector("#cart-total")
 // This array is the memory of the system
 // It answers: what is selected right now?
 const selectedCards = [];
