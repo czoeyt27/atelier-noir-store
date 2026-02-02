@@ -1,3 +1,26 @@
+// ===============================
+// CURRENCY + LOCALE (Atelier Noir)
+// ===============================
+
+
+// Detect user's locale automatically (example: "en-ZA", "en-US", "ar-AE")
+const userLocale = navigator.language || "en-US"; 
+
+
+// Decide what currency we want to display
+// For now we keep it ZAR because your store prices are in Rands
+const storeCurrency = "USD"; 
+
+// Format price like a real store
+function formatPrice(amount) {
+  return amount.toLocaleString(userLocale, {
+    style: "currency",
+    currency: storeCurrency, 
+  }); 
+}
+
+// shows product prices
+<p class="price">${formatPrice(product.price)}</p>
 
 const products = [
   {id:1, name: "Vintage Leather Trench", category: "Unisex", price: 14900, imageUrl: "images/vintage-trench.jpg", summary: "1980s · Fine condition with a rich even pantina.", description: "A rare 1980s vintage leather trench in fine condition, featuring a rich even patina. Designed with a structured silhouette and timeless tailoring for elevated everyday wear."},
@@ -46,10 +69,53 @@ const selectedCards = [];
 // You must select elements before adding behavior
 const productCards = document.querySelectorAll('.product-card');
 
+
+// ===============================
+// CART RENDER FUNCTION
+// ===============================
+
+// This function updates the cart display on the page.
+// It reads what is inside selectedCards (memory),
+// then rebuilds the cart list and total from scratch.
 function renderCart() {
-  cartList.innerHTML = ""; 
+// 1) Clear the cart list before rebuilding it
+// This prevents duplicate items from stacking up in the UI
+  cartList.innerHTML = ""; // Clear cart display
+  
+// 2) Create a total variable
+// We will add product prices to it as we loop 
   let total =0; 
+
+  
+// 3) Loop through each selected product ID in memory
+  selectedCards.forEach((id)  => {
+    const product = products.find((p)  => p.id === id); 
+
+    // Safety check (in case id doesn't exist)
+    // If the product wasn't found, stop this loop iteration
+    // (This avoids JS errors if an ID is wrong/missing)
+    if(!product) return; 
+
+    // Add this product's price to the running total
+    total += product.price; 
+
+    // Add item to cart list 
+    // We use innerHTML += to append each new item
+    cartList.innerHTML += `
+    <li class="cart-item"> 
+     <span>${product.name}</span>
+     <span>$${product.price.toLocaleString()}</span>
+     </li>
+    `; 
+  })
+
+  // 4) Update the cart total in the UI
+  // toLocaleString() makes the number look nice: 14900 -> 14,900
+  // Update total
+   cartTotal.textContent = `$${total.toLocaleString()}`; 
 }
+
+
 
 // ===============================
 // INTERACTION LOGIC
@@ -66,7 +132,7 @@ productCards.forEach((card) => {
     // The array stores data, not DOM elements
     const productId = Number(card.dataset.id);
 
-
+ 
 
     // -------------------------------
     // MEMORY UPDATE (add / remove)
