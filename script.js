@@ -19,8 +19,7 @@ function formatPrice(amount) {
   }); 
 }
 
-// shows product prices
-<p class="price">${formatPrice(product.price)}</p>
+
 
 const products = [
   {id:1, name: "Vintage Leather Trench", category: "Unisex", price: 14900, imageUrl: "images/vintage-trench.jpg", summary: "1980s · Fine condition with a rich even pantina.", description: "A rare 1980s vintage leather trench in fine condition, featuring a rich even patina. Designed with a structured silhouette and timeless tailoring for elevated everyday wear."},
@@ -126,7 +125,7 @@ function renderCart() {
 productCards.forEach((card) => {
 
   // Each card gets its own click behavior
-  card.addEventListener('click', () => {
+    card.addEventListener('click', () => {
 
     // This extracts the meaningful data from the DOM
     // The array stores data, not DOM elements
@@ -139,23 +138,33 @@ productCards.forEach((card) => {
     // -------------------------------
 
     if (selectedCards.includes(productId))  {
+
       // If already selected → remove from memory
-      const index = selectedCards.indexOf(productName);
+      const index = selectedCards.indexOf(productId);
+
+      // Remove 1 item at that index
       selectedCards.splice(index, 1);
 
    
     } else {                                                                                                                 
       // If not selected → add to memory
-      selectedCards.push(productName);
+      selectedCards.push(productId);
 
 
     }
+
+     // -------------------------------
+    // UI UPDATE: cart
+    // -------------------------------
+    renderCart();
 
     // -------------------------------
     // UI UPDATE: counter
     // -------------------------------
 
     countDisplay.textContent = selectedCards.length;
+
+   
 
     // -------------------------------
     // DEBUG SNAPSHOT

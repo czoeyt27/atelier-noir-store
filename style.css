@@ -120,31 +120,37 @@ h2, h3, h4 {
 }
 
 .product-card {
-    display: flex; 
-    flex-direction: column; 
+    display: flex; /* make the card a flex container */
+    flex-direction: column; /* stack elements vertically */
     height: 100%; /* Ensures cards in the same row are equal height */
     cursor: pointer; 
       /* Smooth transition for the 'lift' effect */
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
                 box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    border: 1px solid transparent; /* Prevents layout jump */
+    border: 1px solid transparent; /* Prevents layout jump */ 
 }
 
 /* Fixed the space betweem colon and last-child */
 .product-card p:last-child {
     font-weight: 600; 
     color: #111; 
-    margin-top: 0.5rem; 
+    margin-top: auto; 
 }
 
 .product-card img {
-    width: 100%; 
+    width: 100%;
     display: block; 
     aspect-ratio: 3 /4; 
     background-color: #eee;
     object-fit: cover; 
     margin-bottom: 1rem; 
 }
+
+.product-card p.description{
+    flex-grow: 1;   /* fill space above the price */
+}
+
+
 
 .product-card:hover {
     transform: translateY(-4px); /* A subtle luxury life effect */
