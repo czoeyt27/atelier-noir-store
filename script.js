@@ -52,7 +52,6 @@ const products = [
 // SETUP / MEMORY
 // ===============================
 
-const emptyContainer = document.querySelector('.empty-container');
 
 // This displays how many items are selected
 const countDisplay = document.querySelector('#selection-count');
@@ -73,46 +72,46 @@ const productCards = document.querySelectorAll('.product-card');
 // CART RENDER FUNCTION
 // ===============================
 
-// This function updates the cart display on the page.
-// It reads what is inside selectedCards (memory),
-// then rebuilds the cart list and total from scratch.
+/**
+ * RE-RENDER THE CART UI
+ * This is the "Master Controller" that keeps your visuals in sync 
+ * with your data (the selectedCards array).
+ */
 function renderCart() {
-// 1) Clear the cart list before rebuilding it
-// This prevents duplicate items from stacking up in the UI
-  cartList.innerHTML = ""; // Clear cart display
-  
-// 2) Create a total variable
-// We will add product prices to it as we loop 
-  let total =0; 
+    // 1. UPDATE THE 'BADGE'
+    // We immediately update the number in the top-right corner.
+    // This provides instant visual feedback to the user.
+    countDisplay.textContent = selectedCards.length;
 
-  
-// 3) Loop through each selected product ID in memory
-  selectedCards.forEach((id)  => {
-    const product = products.find((p)  => p.id === id); 
+    // 2. THE "GUARD CLAUSE" (Empty State)
+    // If the cart is empty, we show a friendly message and "return" (stop)
+    // the function early. This prevents the code below from running for no reason.
+    if (selectedCards.length === 0) {
+        cartList.innerHTML = '<li class="empty-msg">Your collection is empty</li>';
+        cartTotal.textContent = '$0';
+        return; 
+    }
 
-    // Safety check (in case id doesn't exist)
-    // If the product wasn't found, stop this loop iteration
-    // (This avoids JS errors if an ID is wrong/missing)
-    if(!product) return; 
+    // 3. TRANSFORM DATA INTO HTML
+    // .map() takes our list of IDs and "transforms" them into a list of HTML strings.
+    const cartHTML = selectedCards.map(id => {
+        // Find the full product info (name/price) from our main 'products' array
+        const product = products.find(p => p.id === id);
+        
+        // Return a Template Literal (HTML string) for this specific item.
+        // .toLocaleString() adds the luxury commas (e.g., 14,900 instead of 14900).
+        return `<li>${product.name} <span>$${product.price.toLocaleString()}</span></li>`;
+    }).join(''); // .join('') merges the array of strings into one clean block of HTML.
 
-    // Add this product's price to the running total
-    total += product.price; 
+    // 4. INJECT INTO THE DOM
+    // We replace the old list with our brand new list of items.
+    cartList.innerHTML = cartHTML;
 
-    // Add item to cart list 
-    // We use innerHTML += to append each new item
-    cartList.innerHTML += `
-    <li class="cart-item"> 
-     <span>${product.name}</span>
-     <span>$${product.price.toLocaleString()}</span>
-     </li>
-    `; 
-  })
-
-  // 4) Update the cart total in the UI
-  // toLocaleString() makes the number look nice: 14900 -> 14,900
-  // Update total
-   cartTotal.textContent = `$${total.toLocaleString()}`; 
+    // 5. UPDATE TOTAL PRICE
+    // We call the helper function to do the math and display the total.
+    cartTotal.textContent = `$${calculateTotal()}`;
 }
+
 
 
 
@@ -120,12 +119,18 @@ function renderCart() {
 // INTERACTION LOGIC
 // ===============================
 
+
+document.querySelector('. cart-indicator').addEventListener('click', () => {
+  document.querySelector('.cart-dropdown').classList.toggle('hidden')
+}); 
 //The forEach loop does not handle clicks.
 //It prepares cards to handle clicks later.
 productCards.forEach((card) => {
 
   // Each card gets its own click behavior
     card.addEventListener('click', () => {
+
+      card.classList.toggle('is-selected')
 
     // This extracts the meaningful data from the DOM
     // The array stores data, not DOM elements
@@ -153,9 +158,10 @@ productCards.forEach((card) => {
 
     }
 
-     // -------------------------------
+    // -------------------------------
     // UI UPDATE: cart
     // -------------------------------
+    
     renderCart();
 
     // -------------------------------

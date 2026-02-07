@@ -26,12 +26,16 @@
                      </ul>
                  </nav>
 
-                 <div class="selection-status">
-                    <span id="selection-count">0</span> items selected
-                 </div>
-                 <!--Add an empty container below the counter
-                 This container will hold selected item names -->
-                 <div class="empty-container"></div>
+                 <div class="cart-indicator">
+                    <span id="selection-count">0</span>
+                    <span class="cart-label">Cart</span>
+
+                  <!-- Dropdown cart -->
+                    <div class="cart-dropdown hidden">
+                    <ul id="cart-list"></ul>
+                    <p class="cart-total">Total: <span id="cart-total">$0</span></p>
+                    </div>
+                </div>
             </header>
 
         <main>
@@ -319,18 +323,7 @@
                     </article>
                 </div>
             </section>
-            <section> 
-                <h3>Selected Items</h3>
-
-                <p>Items Selected: <span id="selection-count">0</span></p>
-                <div class="empty-container">No items selected yet.</div>
-
-                <ul id="cart-list"></ul>
-
-                <p class="cart-total">
-                    Total: <span id="cart-total">$0</span>
-                </p>
-            </section>      
+     
         
 
         <!--ABOUT-->
