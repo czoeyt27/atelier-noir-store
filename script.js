@@ -101,7 +101,7 @@ function renderCart() {
         // Return a Template Literal (HTML string) for this specific item.
         // .toLocaleString() adds the luxury commas (e.g., 14,900 instead of 14900).
         return `<li>${product.name} <span>$${product.price.toLocaleString()}</span></li>`;
-    }).join(''); // .join('') merges the array of strings into one clean block of HTML.
+        }).join(''); // .join('') merges the array of strings into one clean block of HTML.
 
     // 4. INJECT INTO THE DOM
     // We replace the old list with our brand new list of items.
