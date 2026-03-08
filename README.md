@@ -1,7 +1,6 @@
 # atelier-noir-store
 Luxury vintage store 
 
-# AN Vintage Store
 
 AN Vintage Store is a web-based storefront concept for a high-end vintage fashion brand.  
 The project was built to practice front-end web development by creating a clean, minimal, and premium-style user interface for an online retail experience.
